@@ -1,7 +1,6 @@
 <?php
 include "wechat.class.php";
 include "config.php";
-include "processor.php";
 
 $options = array(
 		'token'          => TOKEN,
@@ -19,6 +18,7 @@ if ( !$openid ) {
 	exit();
 }
 
+include "processor.php";
 if (function_exists('onQWCRedircted')) {
 	$state = isset( $_GET['state'] ) ? $_GET['state'] : '';
 	onQWCRedircted( $openid, $state );
