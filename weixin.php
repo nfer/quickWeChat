@@ -15,7 +15,6 @@ $weObj = new Wechat( $options );
 // NOTE: MUST invoke $weObj->getRev() before any other weObj functions
 // it trans wechat xml message to weObj member value 
 $weObj->getRev();
-$openid = $weObj->getRevFrom();
 
 switch($weObj->getRevType()) {
 	case Wechat::MSGTYPE_TEXT:
@@ -38,6 +37,7 @@ function handleMsgText( $weObj ) {
 }
 
 function handleMsgEvent( $weObj ) {
+	$openid = $weObj->getRevFrom();
 	$object = $weObj->getRevEvent();
 	$event = $object["event"];
 
@@ -45,7 +45,7 @@ function handleMsgEvent( $weObj ) {
 		case Wechat::EVENT_MENU_CLICK:
 			if (function_exists('onQWCMenuClick')) {
 				$key = $object["key"];
-				onQWCMenuClick( $weObj, $key );
+				onQWCMenuClick( $weObj, $openid, $key );
 			}
 			break;
 

@@ -4,7 +4,7 @@ function onQWCMsgText( $weObj, $text ) {
 	$weObj->text( $text )->reply();
 }
 
-function onQWCMenuClick( $weObj, $key ) {
+function onQWCMenuClick( $weObj, $openid, $key ) {
 	switch ( $key ) {
 		case 'key1':
 			$weObj->text( 'You Click Key1 Menu.' )->reply();
